@@ -34,10 +34,18 @@ app.use(authRouter)
 
 
 
-app.listen(1337, () => {
-  console.log("started listening on http://127.0.0.1:1337");
-});
-
-const mongoose = require("mongoose")
+// * we connect the database and then start the server
 const config = require("./config.json");
-mongoose.connect(config.mongodbUrl).then(() => console.log("connected to db"))
+
+
+// database connection
+const mongoose = require("mongoose")
+
+mongoose.connect(config.mongodbUrl).then(() => {
+  console.log(`connected to ${config.mongodbUrl}`)
+
+  app.listen(config.port, config.hostname, () => {
+    console.log(`server started on http://${config.hostname}:${config.port}`);
+  })
+
+}).catch(() => console.error("failed to connect to the database"))
