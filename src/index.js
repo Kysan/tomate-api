@@ -6,6 +6,14 @@ const express = require("express");
 const app = express()
 
 // app.use(require("cors"));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*")
+  // res.header()
+  // res.header("Cross-Origin-Embedder-Policy", "*");
+  // res.header("Referrer-Policy", "no-referrer");
+  next();
+})
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use((req, res, next) => {
