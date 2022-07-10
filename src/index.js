@@ -37,6 +37,7 @@ authRouter.use(require("./middleware/jwtAuth"))
 
 authRouter.get("/profile", require("./routes/getProfile"));
 authRouter.post('/completeTask', require("./routes/completeTask"))
+authRouter.get("/users/all", require("./routes/getAllUsers"))
 
 app.use(authRouter)
 
